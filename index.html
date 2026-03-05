@@ -133,18 +133,58 @@
       position: relative;
     }
     
+    /* ガーベラコンテナ */
+    .gerbera-container {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 20px auto;
+    }
+    
     .gerbera-image {
       width: 100%;
       max-width: 280px;
       height: auto;
-      margin: 20px auto;
-      filter: drop-shadow(0 10px 30px rgba(255, 140, 0, 0.2));
+      position: relative;
+      z-index: 2;
       animation: float 3s ease-in-out infinite;
     }
     
+    /* ガーベラの影 */
+    .gerbera-shadow {
+      width: 180px;
+      height: 40px;
+      background: radial-gradient(ellipse, rgba(0, 0, 0, 0.15) 0%, transparent 70%);
+      border-radius: 50%;
+      position: relative;
+      top: -30px;
+      z-index: 1;
+      animation: shadow 3s ease-in-out infinite;
+    }
+    
+    /* ガーベラの上下アニメーション */
     @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
+      0%, 100% { 
+        transform: translateY(0); 
+      }
+      50% { 
+        transform: translateY(-20px); 
+      }
+    }
+    
+    /* 影のアニメーション */
+    @keyframes shadow {
+      0%, 100% { 
+        /* ガーベラが下にある時：影は濃く、小さく */
+        transform: scale(1);
+        opacity: 1;
+      }
+      50% { 
+        /* ガーベラが上にある時：影は薄く、大きく */
+        transform: scale(1.3);
+        opacity: 0.4;
+      }
     }
     
     /* セクション共通 */
@@ -809,7 +849,10 @@
     <!-- メインビジュアル -->
     <section class="hero">
       <h1>助けが必要な方の日常に<br>一輪の花を添えるような温もりを</h1>
-      <img src="gerbera.png" alt="ガーベラ" class="gerbera-image">
+      <div class="gerbera-container">
+        <img src="gerbera.png" alt="ガーベラ" class="gerbera-image">
+        <div class="gerbera-shadow"></div>
+      </div>
     </section>
     
     <!-- 事業所の想い -->
@@ -897,7 +940,7 @@
       
       <!-- 訪問介護料金 -->
       <div class="price-section">
-        <h3 class="price-title">訪問介護</h3>
+        <h3 class="price-title">利用料（訪問介護）</h3>
         
         <table class="price-table">
           <thead>
@@ -997,7 +1040,7 @@
       
       <!-- 居宅介護料金 -->
       <div class="price-section">
-        <h3 class="price-title">居宅介護</h3>
+        <h3 class="price-title">利用料（居宅介護）</h3>
         
         <table class="price-table">
           <thead>
@@ -1111,7 +1154,7 @@
         </table>
         
         <!-- 移動支援 -->
-        <h3 class="price-title" style="margin-top: 30px;">移動支援</h3>
+        <h3 class="price-title" style="margin-top: 30px;">利用料（移動支援）</h3>
         
         <table class="price-table">
           <thead>
