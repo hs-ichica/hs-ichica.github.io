@@ -1,12 +1,1315 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <title>ichica.help</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ヘルパーステーション一花 | 訪問介護・居宅介護</title>
+  
+  <!-- ファビコン -->
+  <link rel="apple-touch-icon" sizes="180x180" href="favicon180.png">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/png" sizes="192x192" href="favicon192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="favicon512.png">
+  
+  <!-- Material Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    :root {
+      --base-cream: #FFF8F0;
+      --base-beige: #FFF5E6;
+      --accent-orange: #FF8C00;
+      --accent-salmon: #fa8072;
+      --text-dark: #4A4A4A;
+      --text-medium: #6B6B6B;
+      --text-light: #8B8B8B;
+      --card-bg: #FFFFFF;
+      --border-color: #F0E5D8;
+    }
+    
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      background: linear-gradient(180deg, var(--base-cream) 0%, var(--base-beige) 100%);
+      color: var(--text-dark);
+      line-height: 1.8;
+      min-height: 100vh;
+    }
+    
+    /* ヘッダー */
+    header {
+      background: rgba(255, 248, 240, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 15px 20px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    }
+    
+    .header-content {
+      max-width: 720px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .logo-container img {
+      height: 45px;
+      width: auto;
+    }
+    
+    nav {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+    
+    nav a {
+      color: var(--text-medium);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      padding: 5px 10px;
+      border-radius: 20px;
+      transition: all 0.3s ease;
+    }
+    
+    nav a:hover {
+      background: var(--accent-salmon);
+      color: white;
+    }
+    
+    /* メインコンテナ */
+    .main-container {
+      max-width: 720px;
+      margin: 0 auto;
+      padding-top: 80px;
+    }
+    
+    /* メインビジュアル */
+    .hero {
+      padding: 40px 20px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50px;
+      right: -50px;
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, rgba(255, 140, 0, 0.1) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    
+    .hero h1 {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 28px;
+      font-weight: 500;
+      color: var(--text-dark);
+      line-height: 1.6;
+      margin-bottom: 30px;
+      position: relative;
+    }
+    
+    .gerbera-image {
+      width: 100%;
+      max-width: 280px;
+      height: auto;
+      margin: 20px auto;
+      filter: drop-shadow(0 10px 30px rgba(255, 140, 0, 0.2));
+      animation: float 3s ease-in-out infinite;
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    
+    /* セクション共通 */
+    section {
+      padding: 50px 20px;
+    }
+    
+    .section-title {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 26px;
+      font-weight: 500;
+      color: var(--text-dark);
+      text-align: center;
+      margin-bottom: 30px;
+      position: relative;
+      padding-bottom: 15px;
+    }
+    
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent-orange), var(--accent-salmon));
+      border-radius: 2px;
+    }
+    
+    /* 事業所の想い */
+    .philosophy {
+      background: white;
+      margin: 0 15px;
+      border-radius: 25px;
+      padding: 40px 25px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    }
+    
+    .philosophy-content {
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+    }
+    
+    .philosophy-item {
+      text-align: center;
+    }
+    
+    .philosophy-item .icon {
+      font-size: 40px;
+      color: var(--accent-orange);
+      margin-bottom: 10px;
+    }
+    
+    .philosophy-item p {
+      font-size: 15px;
+      color: var(--text-medium);
+      line-height: 1.7;
+    }
+    
+    .philosophy-meaning {
+      background: linear-gradient(135deg, var(--base-cream), var(--base-beige));
+      padding: 20px;
+      border-radius: 15px;
+      margin-top: 15px;
+    }
+    
+    .philosophy-meaning h3 {
+      font-size: 18px;
+      color: var(--accent-orange);
+      margin-bottom: 12px;
+      text-align: center;
+    }
+    
+    .meaning-letters {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+    
+    .letter-item {
+      text-align: center;
+    }
+    
+    .letter-item .letter {
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--accent-salmon);
+      font-family: 'Georgia', serif;
+    }
+    
+    .letter-item .meaning {
+      font-size: 12px;
+      color: var(--text-light);
+      margin-top: 5px;
+    }
+    
+    /* サービス案内 */
+    .service {
+      background: linear-gradient(180deg, transparent, rgba(255, 248, 240, 0.5));
+    }
+    
+    .service-card {
+      background: white;
+      border-radius: 20px;
+      padding: 25px;
+      box-shadow: 0 3px 15px rgba(0, 0, 0, 0.05);
+      border-left: 4px solid var(--accent-orange);
+    }
+    
+    .service-card h3 {
+      font-size: 20px;
+      color: var(--accent-orange);
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .service-card h3 .material-icons {
+      font-size: 24px;
+    }
+    
+    .service-types {
+      display: flex;
+      gap: 30px;
+      margin-bottom: 25px;
+    }
+    
+    .service-type {
+      flex: 1;
+    }
+    
+    .service-type h4 {
+      font-size: 16px;
+      color: var(--text-dark);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .service-type h4 .material-icons {
+      font-size: 20px;
+      color: var(--accent-salmon);
+    }
+    
+    .service-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    
+    .service-tag {
+      background: var(--base-cream);
+      color: var(--text-medium);
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 14px;
+      border: 1px solid var(--border-color);
+    }
+    
+    .service-info {
+      background: var(--base-cream);
+      border-radius: 15px;
+      padding: 20px;
+    }
+    
+    .service-info-items {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    
+    .service-info-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      color: var(--text-medium);
+    }
+    
+    .service-info-item .material-icons {
+      font-size: 18px;
+      color: var(--accent-salmon);
+    }
+    
+    /* 料金表 */
+    .price {
+      background: white;
+    }
+    
+    .price-section {
+      margin-bottom: 40px;
+    }
+    
+    .price-section:last-child {
+      margin-bottom: 0;
+    }
+    
+    .price-title {
+      font-size: 20px;
+      color: var(--text-dark);
+      margin-bottom: 20px;
+      padding-left: 15px;
+      border-left: 4px solid var(--accent-salmon);
+    }
+    
+    .price-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 15px;
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      table-layout: fixed;
+    }
+    
+    /* 3列の表の列幅統一 */
+    .price-table th:first-child,
+    .price-table td:first-child {
+      width: 40%;
+    }
+    
+    .price-table th:nth-child(2),
+    .price-table td:nth-child(2) {
+      width: 35%;
+    }
+    
+    .price-table th:last-child,
+    .price-table td:last-child {
+      width: 25%;
+    }
+    
+    .price-table th {
+      background: linear-gradient(135deg, var(--accent-orange), var(--accent-salmon));
+      color: white;
+      padding: 12px 10px;
+      font-size: 14px;
+      font-weight: 500;
+      text-align: left;
+    }
+    
+    .price-table td {
+      padding: 10px;
+      border-bottom: 1px solid var(--border-color);
+      font-size: 13px;
+      text-align: left;
+      background: white;
+    }
+    
+    /* サービス内容列（1列目）は左寄せ */
+    .price-table td:first-child {
+      text-align: left;
+    }
+    
+    /* 時間列は左寄せ */
+    .price-table td.time-col {
+      text-align: left !important;
+    }
+    
+    /* 金額列は右寄せ */
+    .price-table td.price-col {
+      text-align: right !important;
+    }
+    
+    .price-table tr:last-child td {
+      border-bottom: none;
+    }
+    
+    /* セル単位の背景色（最優先） */
+    .price-table td.cell-white {
+      background: white !important;
+    }
+    
+    .price-table td.cell-cream {
+      background: var(--base-cream) !important;
+    }
+    
+    .price-note {
+      font-size: 12px;
+      color: var(--text-light);
+      margin-top: 10px;
+      padding: 10px;
+      background: var(--base-cream);
+      border-radius: 8px;
+    }
+    
+    /* アクセス */
+    .access {
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.5), transparent);
+    }
+    
+    .access-card {
+      background: white;
+      border-radius: 20px;
+      padding: 30px 25px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    }
+    
+    .access-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+    
+    .access-item:last-child {
+      margin-bottom: 0;
+    }
+    
+    .access-item .material-icons {
+      font-size: 24px;
+      color: var(--accent-orange);
+      margin-top: 3px;
+    }
+    
+    .access-item-content h4 {
+      font-size: 14px;
+      color: var(--text-light);
+      margin-bottom: 5px;
+    }
+    
+    .access-item-content p {
+      font-size: 16px;
+      color: var(--text-dark);
+    }
+    
+    .map-container {
+      margin-top: 25px;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    }
+    
+    .map-container iframe {
+      width: 100%;
+      height: 300px;
+      border: 0;
+    }
+    
+    /* お問い合わせ */
+    .contact {
+      background: white;
+    }
+    
+    .contact-methods {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin-bottom: 30px;
+    }
+    
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      padding: 15px 20px;
+      background: var(--base-cream);
+      border-radius: 15px;
+      transition: all 0.3s ease;
+    }
+    
+    .contact-item:hover {
+      transform: translateX(5px);
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    .contact-item .material-icons {
+      font-size: 28px;
+      color: var(--accent-orange);
+    }
+    
+    .contact-item-content h4 {
+      font-size: 13px;
+      color: var(--text-light);
+      margin-bottom: 3px;
+    }
+    
+    .contact-item-content p {
+      font-size: 18px;
+      color: var(--text-dark);
+      font-weight: 500;
+    }
+    
+    /* メールアドレス表示ボタン */
+    .email-reveal {
+      cursor: pointer;
+      padding: 15px 20px;
+      background: var(--base-cream);
+      border-radius: 15px;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    
+    .email-reveal:hover {
+      transform: translateX(5px);
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    .email-reveal .material-icons {
+      font-size: 28px;
+      color: var(--accent-orange);
+    }
+    
+    .email-reveal-text {
+      flex: 1;
+    }
+    
+    .email-reveal-text h4 {
+      font-size: 13px;
+      color: var(--text-light);
+      margin-bottom: 3px;
+    }
+    
+    .email-reveal-text p {
+      font-size: 16px;
+      color: var(--text-dark);
+    }
+    
+    .email-display {
+      padding: 15px 20px;
+      background: var(--base-cream);
+      border-radius: 15px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    
+    .email-display .material-icons {
+      font-size: 28px;
+      color: var(--accent-orange);
+    }
+    
+    .email-display-content h4 {
+      font-size: 13px;
+      color: var(--text-light);
+      margin-bottom: 3px;
+    }
+    
+    .email-display-content p {
+      font-size: 18px;
+      color: var(--text-dark);
+      font-weight: 500;
+    }
+    
+    .email-highlight {
+      color: var(--accent-salmon);
+      font-weight: 700;
+    }
+    
+    /* フォーム */
+    .contact-form {
+      background: var(--base-cream);
+      border-radius: 20px;
+      padding: 30px 25px;
+      margin-top: 30px;
+    }
+    
+    .form-title {
+      font-size: 20px;
+      color: var(--text-dark);
+      margin-bottom: 25px;
+      text-align: center;
+    }
+    
+    .form-group {
+      margin-bottom: 20px;
+    }
+    
+    .form-group label {
+      display: block;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-dark);
+      margin-bottom: 8px;
+    }
+    
+    .form-group label .required {
+      color: var(--accent-salmon);
+      margin-left: 5px;
+    }
+    
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px 15px;
+      border: 2px solid var(--border-color);
+      border-radius: 10px;
+      font-size: 16px;
+      font-family: 'Noto Sans JP', sans-serif;
+      background: white;
+      transition: all 0.3s ease;
+    }
+    
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--accent-orange);
+      box-shadow: 0 0 0 3px rgba(255, 140, 0, 0.1);
+    }
+    
+    .form-group textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+    
+    .submit-btn {
+      width: 100%;
+      padding: 15px;
+      background: linear-gradient(135deg, var(--accent-orange), var(--accent-salmon));
+      color: white;
+      border: none;
+      border-radius: 15px;
+      font-size: 18px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+    
+    .submit-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 20px rgba(255, 140, 0, 0.3);
+    }
+    
+    .submit-btn:active {
+      transform: translateY(0);
+    }
+    
+    /* フッター */
+    footer {
+      background: linear-gradient(180deg, var(--base-beige), var(--base-cream));
+      padding: 40px 20px 30px;
+      margin-top: 30px;
+    }
+    
+    .footer-content {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    
+    .footer-logo {
+      text-align: center;
+      margin-bottom: 25px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .footer-logo img {
+      height: 50px;
+      width: auto;
+    }
+    
+    .footer-info {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin-bottom: 25px;
+    }
+    
+    .footer-info-item {
+      text-align: center;
+      font-size: 14px;
+      color: var(--text-medium);
+    }
+    
+    .footer-info-item strong {
+      color: var(--text-dark);
+      font-weight: 500;
+    }
+    
+    .business-number {
+      background: white;
+      padding: 15px 20px;
+      border-radius: 12px;
+      margin-top: 15px;
+    }
+    
+    .business-number p {
+      font-size: 13px;
+      color: var(--text-medium);
+      margin-bottom: 8px;
+    }
+    
+    .business-number p:last-child {
+      margin-bottom: 0;
+    }
+    
+    .footer-bottom {
+      text-align: center;
+      padding-top: 20px;
+      border-top: 1px solid var(--border-color);
+    }
+    
+    .footer-bottom p {
+      font-size: 12px;
+      color: var(--text-light);
+    }
+    
+    /* レスポンシブ対応 */
+    @media (max-width: 480px) {
+      nav {
+        gap: 8px;
+      }
+      
+      nav a {
+        font-size: 11px;
+        padding: 4px 8px;
+      }
+      
+      .hero h1 {
+        font-size: 24px;
+      }
+      
+      .section-title {
+        font-size: 22px;
+      }
+      
+      .price-table th,
+      .price-table td {
+        padding: 8px 6px;
+        font-size: 12px;
+      }
+      
+      .service-types {
+        flex-direction: column;
+        gap: 20px;
+      }
+    }
+  </style>
 </head>
 <body>
-    <h1>ようこそ、ichica.helpへ！</h1>
-    <p>このサイトは GitHub Pages で構築されています。</p>
-    <p>現在、サイトを準備中です。</p>
+  <!-- ヘッダー -->
+  <header>
+    <div class="header-content">
+      <div class="logo-container">
+        <img src="logo.png" alt="ヘルパーステーション一花">
+      </div>
+      <nav>
+        <a href="#service">サービス</a>
+        <a href="#price">料金</a>
+        <a href="#access">アクセス</a>
+        <a href="#contact">お問い合わせ</a>
+      </nav>
+    </div>
+  </header>
+  
+  <!-- メインコンテナ -->
+  <div class="main-container">
+    <!-- メインビジュアル -->
+    <section class="hero">
+      <h1>助けが必要な方の日常に<br>一輪の花を添えるような温もりを</h1>
+      <img src="gerbera.png" alt="ガーベラ" class="gerbera-image">
+    </section>
+    
+    <!-- 事業所の想い -->
+    <section class="philosophy">
+      <h2 class="section-title">私たちの想い</h2>
+      <div class="philosophy-content">
+        <div class="philosophy-item">
+          <i class="material-icons icon">favorite</i>
+          <p>一人ひとりの利用者さんを大切にしたい</p>
+        </div>
+        <div class="philosophy-item">
+          <i class="material-icons icon">local_florist</i>
+          <p>花を眺める時のような、和やかで笑顔あふれる人生を過ごしてほしい</p>
+        </div>
+        <div class="philosophy-meaning">
+          <h3>一花（いちか）の意味</h3>
+          <div class="meaning-letters">
+            <div class="letter-item">
+              <div class="letter">I</div>
+              <div class="meaning">一番身近な</div>
+            </div>
+            <div class="letter-item">
+              <div class="letter">Chi</div>
+              <div class="meaning">地域に根差した</div>
+            </div>
+            <div class="letter-item">
+              <div class="letter">Ca</div>
+              <div class="meaning">careを届ける</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- サービス案内 -->
+    <section id="service" class="service">
+      <h2 class="section-title">サービス案内</h2>
+      <div class="service-card">
+        <div class="service-types">
+          <div class="service-type">
+            <h4>
+              <i class="material-icons">elderly</i>
+              訪問介護
+            </h4>
+            <div class="service-list">
+              <span class="service-tag">身体介護</span>
+              <span class="service-tag">生活援助</span>
+            </div>
+          </div>
+          
+          <div class="service-type">
+            <h4>
+              <i class="material-icons">accessible</i>
+              居宅介護
+            </h4>
+            <div class="service-list">
+              <span class="service-tag">居宅介護</span>
+              <span class="service-tag">移動支援</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="service-info">
+          <div class="service-info-items">
+            <div class="service-info-item">
+              <i class="material-icons">place</i>
+              <span>対応地域：松阪市</span>
+            </div>
+            <div class="service-info-item">
+              <i class="material-icons">event</i>
+              <span>営業日：毎日（12/31～1/3を除く）</span>
+            </div>
+            <div class="service-info-item">
+              <i class="material-icons">schedule</i>
+              <span>営業時間：8:30～17:30</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- 料金表 -->
+    <section id="price" class="price">
+      <h2 class="section-title">料金表</h2>
+      
+      <!-- 訪問介護料金 -->
+      <div class="price-section">
+        <h3 class="price-title">利用料（訪問介護）</h3>
+        
+        <table class="price-table">
+          <thead>
+            <tr>
+              <th>サービス内容</th>
+              <th>時間</th>
+              <th>金額</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- 身体介護 行1-5 -->
+            <tr>
+              <td rowspan="5" class="cell-white">身体介護</td>
+              <td class="time-col cell-white">20分未満</td>
+              <td class="price-col cell-white">1,630円</td>
+            </tr>
+            <tr>
+              <td class="time-col cell-cream">20分以上30分未満</td>
+              <td class="price-col cell-cream">2,440円</td>
+            </tr>
+            <tr>
+              <td class="time-col cell-white">30分以上60分未満</td>
+              <td class="price-col cell-white">3,870円</td>
+            </tr>
+            <tr>
+              <td class="time-col cell-cream">60分以上90分未満</td>
+              <td class="price-col cell-cream">5,670円</td>
+            </tr>
+            <tr>
+              <td class="time-col cell-white">90分以上（30分増す毎に）</td>
+              <td class="price-col cell-white">+820円</td>
+            </tr>
+            <!-- 生活援助 行6-7 -->
+            <tr>
+              <td rowspan="2" class="cell-cream">生活援助</td>
+              <td class="time-col cell-cream">20分以上45分未満</td>
+              <td class="price-col cell-cream">1,790円</td>
+            </tr>
+            <tr>
+              <td class="time-col cell-white">45分以上</td>
+              <td class="price-col cell-white">2,200円</td>
+            </tr>
+            <!-- 身体介護に引き続き生活援助を行った場合 行8-10 -->
+            <tr>
+              <td rowspan="3" class="cell-white">身体介護に引き続き<br>生活援助を行った場合</td>
+              <td class="time-col cell-cream">20分以上45分未満</td>
+              <td class="price-col cell-cream">650円</td>
+            </tr>
+            <tr>
+              <td class="time-col cell-white">45分以上70分未満</td>
+              <td class="price-col cell-white">1,300円</td>
+            </tr>
+            <tr>
+              <td class="time-col cell-cream">70分以上</td>
+              <td class="price-col cell-cream">1,950円</td>
+            </tr>
+            <!-- 通院等乗降介助 行11 -->
+            <tr>
+              <td class="cell-cream">通院等乗降介助</td>
+              <td class="time-col cell-white">1回</td>
+              <td class="price-col cell-white">97円</td>
+            </tr>
+          </tbody>
+        </table>
+        
+        <table class="price-table">
+          <thead>
+            <tr>
+              <th>加算の種類</th>
+              <th>金額・割合</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="cell-white">初回加算</td>
+              <td class="price-col cell-white">200円</td>
+            </tr>
+            <tr>
+              <td class="cell-cream">緊急時訪問介護加算</td>
+              <td class="price-col cell-cream">100円</td>
+            </tr>
+            <tr>
+              <td class="cell-white">早朝夜間深夜加算</td>
+              <td class="price-col cell-white">早朝25% / 夜間25% / 深夜50%</td>
+            </tr>
+            <tr>
+              <td class="cell-cream">特定事業所加算</td>
+              <td class="price-col cell-cream">Ⅱ 10%</td>
+            </tr>
+            <tr>
+              <td class="cell-white">介護職員等処遇改善加算</td>
+              <td class="price-col cell-white">Ⅰ 24.5%</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      
+      <!-- 居宅介護料金 -->
+      <div class="price-section">
+        <h3 class="price-title">利用料（居宅介護）</h3>
+        
+        <table class="price-table">
+          <thead>
+            <tr>
+              <th>サービス内容</th>
+              <th>時間</th>
+              <th>金額</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- 身体介護・通院等介助 行1-5 -->
+            <tr>
+              <td rowspan="5" class="cell-white">身体介護・通院等介助<br>【身体介護を伴う】</td>
+              <td class="time-col cell-white">30分以下</td>
+              <td class="price-col cell-white">256円</td>
+            </tr>
+            <tr>
+              <td class="time-col cell-cream">31分以上1時間以下</td>
+              <td class="price-col cell-cream">404円</td>
+            </tr>
+            <tr>
+              <td class="time-col cell-white">1時間1分以上1時間30分以下</td>
+              <td class="price-col cell-white">587円</td>
+            </tr>
+            <tr>
+              <td class="time-col cell-cream">1時間31分以上2時間以下</td>
+              <td class="price-col cell-cream">669円</td>
+            </tr>
+            <tr>
+              <td class="time-col cell-white">2時間1分以上2時間30分以下</td>
+              <td class="price-col cell-white">754円</td>
+            </tr>
+            <!-- 家事援助 行6-10 -->
+            <tr>
+              <td rowspan="5" class="cell-cream">家事援助</td>
+              <td class="time-col cell-cream">30分以下</td>
+              <td class="price-col cell-cream">106円</td>
+            </tr>
+            <tr>
+              <td class="time-col cell-white">31分以上45分以下</td>
+              <td class="price-col cell-white">153円</td>
+            </tr>
+            <tr>
+              <td class="time-col cell-cream">46分以上1時間以下</td>
+              <td class="price-col cell-cream">197円</td>
+            </tr>
+            <tr>
+              <td class="time-col cell-white">1時間1分以上1時間15分以下</td>
+              <td class="price-col cell-white">239円</td>
+            </tr>
+            <tr>
+              <td class="time-col cell-cream">1時間16分以上1時間30分以下</td>
+              <td class="price-col cell-cream">275円</td>
+            </tr>
+            <!-- 通院等介助 行11-13 -->
+            <tr>
+              <td rowspan="3" class="cell-white">通院等介助<br>【身体介護を伴わない】</td>
+              <td class="time-col cell-white">30分以下</td>
+              <td class="price-col cell-white">106円</td>
+            </tr>
+            <tr>
+              <td class="time-col cell-cream">31分以上1時間以下</td>
+              <td class="price-col cell-cream">197円</td>
+            </tr>
+            <tr>
+              <td class="time-col cell-white">1時間1分以上1時間30分以下</td>
+              <td class="price-col cell-white">275円</td>
+            </tr>
+            <!-- 通院等のための乗車又は降車の介助 行14 -->
+            <tr>
+              <td class="cell-cream">通院等のための乗車又は降車の介助</td>
+              <td class="time-col cell-cream">-</td>
+              <td class="price-col cell-cream">102円</td>
+            </tr>
+          </tbody>
+        </table>
+        
+        <table class="price-table">
+          <thead>
+            <tr>
+              <th>加算の種類</th>
+              <th>金額・割合</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="cell-white">初回加算</td>
+              <td class="price-col cell-white">2,000円</td>
+            </tr>
+            <tr>
+              <td class="cell-cream">緊急時対応加算</td>
+              <td class="price-col cell-cream">1,000円</td>
+            </tr>
+            <tr>
+              <td class="cell-white">早朝夜間深夜加算</td>
+              <td class="price-col cell-white">早朝25% / 夜間25% / 深夜50%</td>
+            </tr>
+            <tr>
+              <td class="cell-cream">利用者負担上限額管理加算</td>
+              <td class="price-col cell-cream">1,500円</td>
+            </tr>
+            <tr>
+              <td class="cell-white">特定事業所加算</td>
+              <td class="price-col cell-white">Ⅱ 10%</td>
+            </tr>
+            <tr>
+              <td class="cell-cream">福祉・介護職員等処遇改善加算</td>
+              <td class="price-col cell-cream">Ⅰ 41.7%</td>
+            </tr>
+          </tbody>
+        </table>
+        
+        <!-- 移動支援 -->
+        <h3 class="price-title" style="margin-top: 30px;">利用料（移動支援）</h3>
+        
+        <table class="price-table">
+          <thead>
+            <tr>
+              <th>サービス内容</th>
+              <th>時間</th>
+              <th>金額</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- 身体介護を伴う 行1-4 -->
+            <tr>
+              <td rowspan="4" class="cell-white">身体介護を伴う</td>
+              <td class="time-col cell-white">20分以上45分未満</td>
+              <td class="price-col cell-white">230円</td>
+            </tr>
+            <tr>
+              <td class="time-col cell-cream">45分以上1時間15分未満</td>
+              <td class="price-col cell-cream">400円</td>
+            </tr>
+            <tr>
+              <td class="time-col cell-white">1時間15分以上1時間45分未満</td>
+              <td class="price-col cell-white">580円</td>
+            </tr>
+            <tr>
+              <td class="time-col cell-cream">以降30分毎</td>
+              <td class="price-col cell-cream">+75円</td>
+            </tr>
+            <!-- 身体介護を伴わない 行5-7 -->
+            <tr>
+              <td rowspan="3" class="cell-cream">身体介護を伴わない</td>
+              <td class="time-col cell-white">20分以上45分未満</td>
+              <td class="price-col cell-white">80円</td>
+            </tr>
+            <tr>
+              <td class="time-col cell-cream">45分以上1時間15分未満</td>
+              <td class="price-col cell-cream">150円</td>
+            </tr>
+            <tr>
+              <td class="time-col cell-white">以降30分毎</td>
+              <td class="price-col cell-white">+75円</td>
+            </tr>
+          </tbody>
+        </table>
+        
+        <p class="price-note">※各種サービス利用料金は、介護保険法及び障害者総合支援法その他関係法令により定められたものであり、改定された場合は基本利用料金も自動的に改定されます。その場合は事前に新しい基本利用料金を書面でお知らせします。</p>
+      </div>
+    </section>
+    
+    <!-- アクセス -->
+    <section id="access" class="access">
+      <h2 class="section-title">アクセス</h2>
+      <div class="access-card">
+        <div class="access-item">
+          <i class="material-icons">place</i>
+          <div class="access-item-content">
+            <h4>住所</h4>
+            <p>〒515-0063<br>三重県松阪市大黒田町1799-3<br>第3三恵ビル 202</p>
+          </div>
+        </div>
+        
+        <div class="map-container">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d205.33680820917374!2d136.52427342203777!3d34.569024175416494!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60046ad7346f1003%3A0x1800601dc8e7d403!2z44CSNTE1LTAwNjMg5LiJ6YeN55yM5p2-6Ziq5biC5aSn6buS55Sw55S677yR77yX77yZ77yZ4oiS77yTIOS4ieaBteODk-ODqw!5e0!3m2!1sja!2sjp!4v1772701852547!5m2!1sja!2sjp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+    </section>
+    
+    <!-- お問い合わせ -->
+    <section id="contact" class="contact">
+      <h2 class="section-title">お問い合わせ</h2>
+      
+      <div class="contact-methods">
+        <div class="contact-item">
+          <i class="material-icons">phone</i>
+          <div class="contact-item-content">
+            <h4>電話番号</h4>
+            <p>070-3790-6771</p>
+          </div>
+        </div>
+        
+        <div class="contact-item">
+          <i class="material-icons">print</i>
+          <div class="contact-item-content">
+            <h4>FAX番号</h4>
+            <p>準備中</p>
+          </div>
+        </div>
+        
+        <!-- メールアドレス（クリックで表示） -->
+        <div class="email-reveal" id="emailReveal" onclick="revealEmail()">
+          <i class="material-icons">email</i>
+          <div class="email-reveal-text">
+            <h4>メールアドレス</h4>
+            <p>ここをタップするとメールアドレスが表示されます</p>
+          </div>
+        </div>
+        
+        <div class="email-display" id="emailDisplay" style="display: none;">
+          <i class="material-icons">email</i>
+          <div class="email-display-content">
+            <h4>メールアドレス</h4>
+            <p>info@ichi<span class="email-highlight">ca</span>.help</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- お問い合わせフォーム -->
+      <div class="contact-form">
+        <h3 class="form-title">お問い合わせフォーム</h3>
+        <form action="https://formspree.io/f/xykngenn" method="POST">
+          <div class="form-group">
+            <label>お問い合わせ種別<span class="required">*</span></label>
+            <select name="category" required>
+              <option value="">選択してください</option>
+              <option value="service">サービス利用の相談</option>
+              <option value="recruitment">採用について</option>
+              <option value="other">その他</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label>お名前<span class="required">*</span></label>
+            <input type="text" name="name" required placeholder="例：山田 太郎">
+          </div>
+          
+          <div class="form-group">
+            <label>電話番号</label>
+            <input type="tel" name="phone" placeholder="例：090-1234-5678">
+          </div>
+          
+          <div class="form-group">
+            <label>メールアドレス<span class="required">*</span></label>
+            <input type="email" name="email" required placeholder="例：example@email.com">
+          </div>
+          
+          <div class="form-group">
+            <label>お問い合わせ内容<span class="required">*</span></label>
+            <textarea name="message" required placeholder="お問い合わせ内容をご記入ください"></textarea>
+          </div>
+          
+          <button type="submit" class="submit-btn">
+            <i class="material-icons">send</i>
+            送信する
+          </button>
+        </form>
+      </div>
+    </section>
+    
+    <!-- フッター -->
+    <footer>
+      <div class="footer-content">
+        <div class="footer-logo">
+          <img src="logo.png" alt="ヘルパーステーション一花">
+        </div>
+        
+        <div class="footer-info">
+          <div class="footer-info-item">
+            〒515-0063 三重県松阪市大黒田町1799-3 第3三恵ビル 202
+          </div>
+          <div class="footer-info-item">
+            TEL: 070-3790-6771
+          </div>
+        </div>
+        
+        <div class="business-number">
+          <p><strong>事業所番号</strong></p>
+          <p>訪問介護：2470704467</p>
+          <p>居宅介護：2410702365</p>
+        </div>
+        
+        <div class="footer-bottom">
+          <p>&copy; 2026 ヘルパーステーション一花 All Rights Reserved.</p>
+        </div>
+      </div>
+    </footer>
+  </div>
+  
+  <!-- JavaScript -->
+  <script>
+    function revealEmail() {
+      var reveal = document.getElementById('emailReveal');
+      var display = document.getElementById('emailDisplay');
+      
+      // メールアドレスを分割して結合
+      var part1 = 'info';
+      var part2 = '@';
+      var part3 = 'ichica';
+      var part4 = '.help';
+      var email = part1 + part2 + part3 + part4;
+      
+      // メールアドレスを表示（caの部分をハイライト）
+      var emailHtml = 'info@ichi<span class="email-highlight">ca</span>.help';
+      display.querySelector('p').innerHTML = emailHtml;
+      
+      // 表示切り替え
+      reveal.style.display = 'none';
+      display.style.display = 'flex';
+    }
+  </script>
 </body>
 </html>
